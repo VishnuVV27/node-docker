@@ -9,6 +9,7 @@ services:
 
   node-app:
     build: .
+    image: vv27/node-docker
     # ports:
     #   - "3000:3000"
     environment:
