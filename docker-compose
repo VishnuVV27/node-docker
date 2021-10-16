@@ -1,0 +1,25 @@
+# version:'3.5'
+# services:
+#   node-app:
+# build: ./
+# image:'my-app'
+# ports:
+#   -p 3000=3000
+# env_file:
+#   - ./.env
+# environment:
+#   - PORT=3000
+# volumes:
+#   - ./:/app
+#   - /app/node_modules
+version: "3.9"
+services:
+  node-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000

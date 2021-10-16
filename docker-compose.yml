@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "3000:80"
+
+  node-app:
+    build: .
+    # ports:
+    #   - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-db:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+  redis:
+    image: redis
+
+# need to declare named volumes so that other can be used(containers!!)
+volumes:
+  mongo-db:
